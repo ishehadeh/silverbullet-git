@@ -1,5 +1,5 @@
 {
   "imports": {
-    "$sb/": "../silverbullet/plug-api/"
+    "$sb/": "https://raw.githubusercontent.com/ishehadeh/silverbullet/main/plug-api/"
   }
 }
