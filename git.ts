@@ -1,6 +1,8 @@
 import { shell } from "$sb/plugos-syscall/mod.ts";
 import { editor, system } from "$sb/silverbullet-syscall/mod.ts";
 
+const GIT_BIN = "/bin/git";
+
 export async function commit(message?: string) {
   if (!message) {
     message = "Snapshot";
@@ -9,10 +11,10 @@ export async function commit(message?: string) {
     "Snapshotting the current space to git with commit message",
     message,
   );
-  const { code } = await shell.run("git", ["add", "./*.md"]);
+  const { code } = await shell.run(GIT_BIN, ["add", "./*.md"]);
   console.log("Git add code", code);
   try {
-    await shell.run("git", ["commit", "-a", "-m", message]);
+    await shell.run(GIT_BIN, ["commit", "-a", "-m", message]);
   } catch {
     // We can ignore, this happens when there's no changes to commit
   }
@@ -38,8 +40,8 @@ export async function sync() {
   console.log("Going to sync with git");
   await commit();
   console.log("Then pulling from remote");
-  await shell.run("git", ["pull"]);
+  await shell.run(GIT_BIN, ["pull"]);
   console.log("And then pushing to remote");
-  await shell.run("git", ["push"]);
+  await shell.run(GIT_BIN, ["push"]);
   console.log("Done!");
 }
