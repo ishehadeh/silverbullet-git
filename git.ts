@@ -3,10 +3,7 @@ import { editor, system } from "$sb/silverbullet-syscall/mod.ts";
 
 const GIT_BIN = "git";
 
-export async function commit(message?: string) {
-  if (!message) {
-    message = "Snapshot";
-  }
+export async function commit(message = "Snapshot") {
   console.log(
     "Snapshotting the current space to git with commit message",
     message
