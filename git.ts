@@ -1,7 +1,7 @@
 import { shell } from "$sb/plugos-syscall/mod.ts";
 import { editor, system } from "$sb/silverbullet-syscall/mod.ts";
 
-const GIT_BIN = "/bin/git";
+const GIT_BIN = "git";
 
 export async function commit(message?: string) {
   if (!message) {
